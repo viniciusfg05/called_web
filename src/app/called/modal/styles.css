@@ -1,0 +1,23 @@
+.DialogContent {
+    background: var(--gray-800);
+    width: 90vw; /* Ajuste o tamanho conforme necessário */
+    max-width: 37.5rem; /* Tamanho máximo opcional */
+    height: auto; /* Ajusta conforme o conteúdo */
+    padding: 2rem; /* Espaçamento interno opcional */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+    color: aliceblue;
+    
+    /* Centralização */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.ContentMessage {
+    width: 100%;
+    color: aliceblue;
+    border-radius: 0.5rem;
+}
