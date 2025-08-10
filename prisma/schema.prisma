@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+
+model Called {
+  id                 String   @id @default(uuid())
+  uid                String   @unique
+  called             String   @unique
+  description        String   @db.Text // Especifico do mysql: para campo que vai ter mais de de 90 caracteres
+  branch             String
+  store              String
+  dataOpen           String
+  created_at         DateTime @default(now())
+  priority           String
+  emergency          String
+  scope              String?
+  status             String   @default("Pendente")
+  descriptionSummary String   @db.Text
+  openingStatus      String
+  callSendingStatus  String?
+  category           String? // Nova coluna para Categoria
+  subcategory        String? // Nova coluna para Subcategoria
+
+  attachments   Attachments[]
+  messageCalled MessageCalled[]
+  answerCalled  AnswerCalled[]
+  observations  Observations[]
+  uf            String
+
+  @@map("called") // Define o nome da tabela 
+}
+
+model MessageCalled {
+  id         String   @id @default(uuid())
+  name       String
+  data       String
+  message    String   @db.Text
+  updated_at DateTime @default(now())
+
+  Called   Called? @relation(fields: [calledId], references: [id])
+  calledId String?
+
+  @@index([calledId])
+  @@map("messageCalled") // Define o nome da tabela 
+}
+
+model AnswerCalled {
+  id         String   @id @default(uuid())
+  answer     String   @db.Text
+  created_at DateTime @default(now())
+
+  Called   Called? @relation(fields: [calledId], references: [id])
+  calledId String?
+
+  @@index([calledId])
+  @@map("attachments") // Define o nome da tabela 
+}
+
+model Attachments {
+  id     String @id @default(uuid())
+  url    String
+  delete String
+
+  Called   Called? @relation(fields: [calledId], references: [id])
+  calledId String?
+
+  @@index([calledId])
+}
+
+model Observations {
+  id          String   @id @default(uuid())
+  called      String?
+  branch      String?
+  description String?  @db.Text // Especifico do mysql: para campo que vai ter mais de de 90 caracteres
+  created_at  DateTime @default(now())
+
+  Called   Called? @relation(fields: [calledId], references: [id])
+  calledId String?
+
+  @@index([calledId])
+  @@map("observations") // Define o nome da tabela 
+}

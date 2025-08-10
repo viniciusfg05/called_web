@@ -1,0 +1,119 @@
+.containerCalled {
+  width: 90rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  color: var(--gray-100);
+
+  .contentCalled {
+    background-color: var(--gray-500);
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+  }
+
+  .contentCalledHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .contentCalledHeaderBranch {
+      strong {
+        font-size: 1.3rem;
+      }
+    }
+
+    .contentCalledHeaderButton {
+      display: flex;
+      gap: 1rem;
+
+
+      button {
+        background-color: var(--blue-600);
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        color: var(--gray-100);
+        font-weight: bold;
+        transition: filter 0.2s;
+
+        &:hover {
+          filter: brightness(1.1);
+        }
+      }
+    }
+
+    .contentCalledHeaderInfo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: bold;
+
+      font-size: 1.25rem;
+
+      p {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .contentCalledBodySummary {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+
+  .contentCalledBodyDescription {
+    font-weight: normal;
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .containerCalled {
+    width: 100%;
+    padding: 0.5rem;
+    padding: 0 auto;
+  }
+
+  .contentCalledHeader {
+    align-items: flex-start;
+    justify-content: space-between;
+    display: flex;
+
+  }
+
+  .contentCalledHeaderInfo {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+
+  .contentCalledHeaderButton {
+    margin-top: 1rem;
+    flex-direction: column;
+    margin-top: 0;
+    align-items: flex-end;
+
+    button {
+      max-width: 8rem;
+      width: 100%;
+    }
+  }
+
+  .contentCalledBodySummary {
+    font-size: 1rem;
+  }
+
+  .contentCalledBodyDescription {
+    font-size: 0.875rem;
+  }
+}
+
