@@ -71,6 +71,10 @@
   }
 }
 
+.contentCalledGreen {
+  background-color: var(--green-500);
+}
+
 @media (max-width: 768px) {
   .containerCalled {
     width: 100%;

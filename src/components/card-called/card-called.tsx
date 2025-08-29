@@ -31,8 +31,8 @@ interface CardCalledProps {
 }
 
 export default async function CardCalled({ uf, modalidade, category, search }: CardCalledProps) {
+  const trimmedSearch = (search ?? "").trim();
   const whereClause: any = {
-    status: "Pendente",
     scope: {
       not: {
         in: ["Fora do escopo", "noScope"]
@@ -50,15 +50,18 @@ export default async function CardCalled({ uf, modalidade, category, search }: C
     whereClause.category = category === null ? null : category;
   }
 
-  const trimmedSearch = (search ?? "").trim();
   if (trimmedSearch.length > 0) {
+    // Não aplica filtro de status!
     whereClause.OR = [
       { branch: { contains: trimmedSearch } },
       { description: { contains: trimmedSearch } },
       { descriptionSummary: { contains: trimmedSearch } },
       { store: { contains: trimmedSearch } },
       { called: { contains: trimmedSearch } },
+      { status: { contains: trimmedSearch } },
     ];
+  } else {
+    whereClause.status = "Pendente";
   }
 
   const calledData = await prisma.called.findMany({
@@ -68,10 +71,33 @@ export default async function CardCalled({ uf, modalidade, category, search }: C
     },
   });
 
+  // Ordenação personalizada por status
+  const statusOrder = (status: string) => {
+    if (status === "Pendente") return 0;
+    if (status === "Orçamento") return 1;
+    if (status === "Resolvido" || status === "Fechado") return 2;
+    return 3;
+  };
+
+  calledData.sort((a, b) => statusOrder(a.status) - statusOrder(b.status));
+
   return (
     <div className="containerCalled">
       {calledData.map((called: any) => (
-        <div key={called.id} className="contentCalled">
+        <div
+          key={called.id}
+          className="contentCalled"
+          style={{
+            backgroundColor:
+              called.status === "Pendente"
+                ? "#262626"
+                : called.status === "Orçamento"
+                ? "#473502"
+                : called.status === "Resolvido" || called.status === "Fechado"
+                ? "#024347"
+                : "#024347"
+          }}
+        >
           <div className="contentCalledHeader">
             <div className="contentCalledHeaderInfo">
               <div className="contentCalledHeaderBranch"><strong>{called.branch}</strong></div>
