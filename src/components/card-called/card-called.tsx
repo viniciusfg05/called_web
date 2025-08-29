@@ -76,6 +76,7 @@ export default async function CardCalled({ uf, modalidade, category, search }: C
     if (status === "Pendente") return 0;
     if (status === "Orçamento") return 1;
     if (status === "Resolvido" || status === "Fechado") return 2;
+    // if (status === "Resolvido" || status === "Fechado") return 2;
     return 3;
   };
 
