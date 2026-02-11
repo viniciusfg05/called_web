@@ -1,7 +1,5 @@
 import Header from "@/components/head/page";
 import Search from "@/components/search";
-import Navbar from "@/components/navbar/page";
-import Summary from "@/components/summary";
 import CardCalled from "@/components/card-called/card-called";
 
 interface RootPageProps {
