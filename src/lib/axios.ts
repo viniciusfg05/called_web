@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const api = axios.create({
   baseURL: "https://calledv2.called.cloud/",
+  // baseURL: "http://localhost:8080/",
 });
 
 export class ApiService {
@@ -13,7 +14,7 @@ export class ApiService {
     }
     const queryParams = new URLSearchParams({ limit: String(limit), offset: String(offset) });
     if (category) queryParams.append("category", category);
-  
+
     url += `?${queryParams.toString()}`;
     return api.get(url);
   }
@@ -25,11 +26,11 @@ export class ApiService {
     }
     const queryParams = new URLSearchParams({ limit: String(limit), offset: String(offset) });
     if (category) queryParams.append("category", category);
-  
+
     url += `?${queryParams.toString()}`;
     return api.get(url);
   }
-  
+
 
   allCategories() {
     const categories = api.get("/getCalleds/categories")
@@ -44,7 +45,7 @@ export class ApiService {
 
   getScopes(uf: string) {
     const url = `/getCalleds/scope/${uf}`;
-    
+
     return api.get(url);
   }
 
