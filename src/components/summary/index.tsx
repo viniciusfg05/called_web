@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./summary.css";
 
 interface MetricGroup {
@@ -17,60 +18,50 @@ interface MetricGroup {
   };
 }
 
-const placeholderData: MetricGroup[] = [
-  {
-    uf: "DF",
-    predial: 60,
-    ar: 60,
-    corretiva: 50,
-    resolved: { ar: 50, predial: 50, corrOrcaEnv: 50 },
-    open: { ar: 50, predial: 50, corrOrcaEnv: 50 },
-  },
-  {
-    uf: "DF",
-    predial: 60,
-    ar: 60,
-    corretiva: 50,
-    resolved: { ar: 50, predial: 50, corrOrcaEnv: 50 },
-    open: { ar: 50, predial: 50, corrOrcaEnv: 50 },
-  },
-  {
-    uf: "DF",
-    predial: 60,
-    ar: 60,
-    corretiva: 50,
-    resolved: { ar: 50, predial: 50, corrOrcaEnv: 50 },
-    open: { ar: 50, predial: 50, corrOrcaEnv: 50 },
-  },
-];
+// const placeholderData: MetricGroup[] = [
+//   {
+//     uf: "DF",
+//     predial: 60,
+//     ar: 60,
+//     corretiva: 50,
+//     resolved: { ar: 50, predial: 50, corrOrcaEnv: 50 },
+//     open: { ar: 50, predial: 50, corrOrcaEnv: 50 },
+//   },
+//   {
+//     uf: "DF",
+//     predial: 60,
+//     ar: 60,
+//     corretiva: 50,
+//     resolved: { ar: 50, predial: 50, corrOrcaEnv: 50 },
+//     open: { ar: 50, predial: 50, corrOrcaEnv: 50 },
+//   },
+//   {
+//     uf: "DF",
+//     predial: 60,
+//     ar: 60,
+//     corretiva: 50,
+//     resolved: { ar: 50, predial: 50, corrOrcaEnv: 50 },
+//     open: { ar: 50, predial: 50, corrOrcaEnv: 50 },
+//   },
+// ];
 
 export default function Summary() {
   return (
     <div className="summaryContainer">
-      {placeholderData.map((group, idx) => (
-        <div key={idx} className="summaryColumn">
-          <div className="summaryCard summaryMain">
-            <h2>{group.uf}</h2>
-            <p>PREDIAL: {group.predial}</p>
-            <p>AR: {group.ar}</p>
-            <p>CORRETIVA: {group.corretiva}</p>
-          </div>
-
-          <div className="summaryCard summaryResolved">
-            <h3>Resolvidos</h3>
-            <p>AR {group.resolved.ar}</p>
-            <p>PREDIAL {group.resolved.predial}</p>
-            <p>CORR. ORÇA. ENV. {group.resolved.corrOrcaEnv}</p>
-          </div>
-
-          <div className="summaryCard summaryOpen">
-            <h3>Aberto</h3>
-            <p>AR {group.open.ar}</p>
-            <p>PREDIAL {group.open.predial}</p>
-            <p>CORR. ORÇA. ENV. {group.open.corrOrcaEnv}</p>
-          </div>
-        </div>
-      ))}
+      <div className="summaryColumn">
+        <Link href="/getCalleds/new" className="summaryCard summaryMain">
+          <p>Novos Chamados</p>
+        </Link>
+        <Link href="/getCalleds/GO" className="summaryCard summaryMain">
+          <p>Chamados GO</p>
+        </Link>
+        <Link href="/getCalleds/DF" className="summaryCard summaryMain">
+          <p>Chamados DF</p>
+        </Link>
+        <Link href="/getCalleds" className="summaryCard summaryMain">
+          <p>Todos chamados</p>
+        </Link>
+      </div>
     </div>
   );
 } 

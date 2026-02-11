@@ -2,6 +2,7 @@ import Header from "@/components/head/page";
 import Search from "@/components/search";
 import Navbar from "@/components/navbar/page";
 import Summary from "@/components/summary";
+import CardCalled from "@/components/card-called/card-called";
 
 interface RootPageProps {
   params: Promise<Record<string, string>>;
@@ -27,8 +28,7 @@ export default async function GetCalled({ params, searchParams }: RootPageProps)
       <div className="contenteHome">
         <Header />
         <Search />
-        {/* <Navbar activeCategory={activeCategory} /> */}
-        <Summary />
+        <CardCalled search={search} />
       </div>
     </div>
   );

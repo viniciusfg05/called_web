@@ -2,6 +2,7 @@
 import { useState, useMemo, FormEvent } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import "./page.css";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 
 export default function Search() {
   const router = useRouter();
@@ -36,7 +37,7 @@ export default function Search() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <button type="submit">Buscar</button>
+        <button type="submit"><MagnifyingGlass size={32} color="white" className="searchIcon" /></button>
       </form>
     </>
   );

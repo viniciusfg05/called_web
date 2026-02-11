@@ -21,51 +21,8 @@
   border-radius: 0.5rem;
   padding: 1.5rem 2rem;
   text-align: center;
-  min-width: 12rem; /* garante largura mínima semelhante aos cards do design */
-}
+  min-width: 12rem;
+  font-weight: 600;
+  font-size: 1.5rem;
 
-.summaryMain {
-  h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  p {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-}
-
-.summaryResolved,
-.summaryOpen {
-  h3 {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 0.75rem;
-  }
-  p {
-    font-size: 1.125rem;
-    font-weight: bold;
-  }
-}
-
-@media (max-width: 768px) {
-  .summaryContainer {
-    padding: 0 1rem;
-    gap: 1rem;
-  }
-
-  .summaryCard {
-    padding: 1rem;
-  }
-
-  .summaryMain h2 {
-    font-size: 1.5rem;
-  }
-
-  .summaryMain p,
-  .summaryResolved p,
-  .summaryOpen p {
-    font-size: 1rem;
-  }
 }
